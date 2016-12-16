@@ -48,32 +48,25 @@ namespace BandTracker.Objects
     {
       return this.GetBandName().GetHashCode();
     }
-    //
-    // public void Save()
-    // {
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //
-    //   SqlCommand cmd = new SqlCommand("INSERT INTO template (Banddescription) OUTPUT INSERTED.id VALUES (@BandDescription);", conn);
-    //
-    //   SqlParameter BanddescriptionParameter = new SqlParameter("@BandDescription", this.Banddescription);
-    //   cmd.Parameters.Add(BanddescriptionParameter);
-    //
-    //   SqlDataReader rdr = cmd.ExecuteReader();
-    //
-    //   while(rdr.Read())
-    //   {
-    //     this.Id = rdr.GetInt32(0);
-    //   }
-    //   if (rdr != null)
-    //   {
-    //     rdr.Close();
-    //   }
-    //   if (conn != null)
-    //   {
-    //     conn.Close();
-    //   }
-    // }
+
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO bands (name , genre) OUTPUT INSERTED.id VALUES (@BandName, @BandGenre);", conn);
+      cmd.Parameters.AddWithValue("BandName", this.GetBandName());
+      cmd.Parameters.AddWithValue("@BandGenre", this.GetGenre());
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+      if (rdr != null) rdr.Close();
+      if (conn != null) conn.Close();
+    }
 
     public static List<Band> GetAll()
     {

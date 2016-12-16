@@ -22,7 +22,18 @@ namespace  BandTracker.Tests
 
       Assert.Equal(expected, result);
     }
-  //  Band newBand = new Band("Kings of Leon", "Indie Rock");
+    [Fact]
+    public void Save_SavesBandtoDB_True()
+    {
+      Band newBand = new Band("Kings of Leon", "Indie Rock");
+      newBand.Save();
+
+      List<Band> result = Band.GetAll();
+      List<Band> expected = new List<Band> {newBand};
+
+      Assert.Equal(expected, result);
+
+    }
 
     public void Dispose()
     {
