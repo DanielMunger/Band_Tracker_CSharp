@@ -21,16 +21,18 @@ namespace  BandTracker.Tests
 
       Assert.Equal(expected, result);
     }
-    // [Fact]
-    // public void Save_SavesVenueToDatabase_true()
-    // {
-    //   //Arrange
-    //   Venue newVenue = new Venue("Belly Up", 455, "213 E. Durant");
-    //   newVenue.Save();
-    //   //Act
-    //   //Assert
-    //   Assert.Equal(true/false, TEMPLATE);
-    // }
+    [Fact]
+    public void Save_SavesVenueToDatabase_true()
+    {
+      //Arrange
+      Venue newVenue = new Venue("Belly Up", 455, "213 E. Durant");
+      newVenue.Save();
+      //Act
+      List<Venue> result = Venue.GetAll();
+      List<Venue> expected = new List<Venue> {newVenue};
+      //Assert
+      Assert.Equal(expected, result);
+    }
 
     // public void Dispose()
     // {
