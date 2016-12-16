@@ -84,7 +84,6 @@ namespace  BandTracker.Tests
 
       Assert.Equal(expected, result);
     }
-
     public void Dispose()
     {
       Venue.DeleteAll();
