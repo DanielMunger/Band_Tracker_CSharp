@@ -121,29 +121,6 @@ namespace BandTracker.Objects
       if (conn != null) conn.Close();
       return foundVenue;
     }
-    // public void Update(string newName, int newCapacity, string newLocation)
-    // {
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //   SqlCommand cmd = new SqlCommand("UPDATE venues SET name=@NewName, capacity=@NewCapacity, venue_location=@NewLocation WHERE id = @VenueId;", conn);
-    //   cmd.Parameters.AddWithValue("@VenueId", this.GetId());
-    //   cmd.Parameters.AddWithValue("@NewName", newName);
-    //   cmd.Parameters.AddWithValue("@NewCapacity", newCapacity);
-    //   cmd.Parameters.AddWithValue("@NewLocation", newLocation);
-    //
-    //   SqlDataReader rdr = cmd.ExecuteReader();
-    //   while(rdr.Read())
-    //   {
-    //     // _id = rdr.GetInt32(0);
-    //     // _name = rdr.GetString(1);
-    //     // _capacity = rdr.GetInt32(2);
-    //     // _location = rdr.GetString(3);
-    //     Console.WriteLine("hello");
-    //   }
-    //   if (rdr != null) rdr.Close();
-    //   if (conn != null) conn.Close();
-    // }
-    //
     public void Update(string newName, int newCapacity, string newLocation)
     {
       SqlConnection conn = DB.Connection();
@@ -168,16 +145,9 @@ namespace BandTracker.Objects
         _name = rdr.GetString(0);
         _capacity = rdr.GetInt32(1);
         _location = rdr.GetString(2);
-        Console.WriteLine("hello");
       }
-      if (rdr != null)
-      {
-        rdr.Close();
-      }
-      if (conn != null)
-      {
-        conn.Close();
-      }
+      if (rdr != null) rdr.Close();
+      if (conn != null) conn.Close();
     }
     //
 
@@ -210,20 +180,15 @@ namespace BandTracker.Objects
     //
     //   return allTEMPLATE;
     // }
-    // public void Delete()
-    // {
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //   SqlCommand cmd = new SqlCommand("DELETE FROM template WHERE id = @TEMPLATEId; DELETE FROM join_table WHERE template_id = @TEMPLATEId", conn);
-    //   SqlParameter TEMPLATEIdParameter = new SqlParameter("@TEMPLATEId", this.Id);
-    //   cmd.Parameters.Add(TEMPLATEIdParameter);
-    //   cmd.ExecuteNonQuery();
-    //
-    //   if(conn!=null)
-    //   {
-    //     conn.Close();
-    //   }
-    // }
+    public void Delete()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("DELETE FROM venues WHERE id = @VenueId;", conn);
+      cmd.Parameters.AddWithValue("@VenueId", this.GetId());
+      cmd.ExecuteNonQuery();
+      if(conn!=null) conn.Close();
+    }
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();

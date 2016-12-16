@@ -1,0 +1,71 @@
+[33mcommit 45704de25d0ef0021229d3fb2d1ad12fdccc704d[m
+Author: Daniel Munger <mungerda@gmail.com>
+Date:   Fri Dec 16 10:41:54 2016 -0800
+
+    fix update metod. passing.
+
+[33mcommit 1316e541eff92f186a640f7eb37036777ef3111a[m
+Author: Daniel Munger <mungerda@gmail.com>
+Date:   Fri Dec 16 10:30:51 2016 -0800
+
+    update not working correctly.
+
+[33mcommit d0260bc9c70083c1810ad6824ed22156d1524dd2[m
+Author: Daniel Munger <mungerda@gmail.com>
+Date:   Fri Dec 16 09:36:53 2016 -0800
+
+    add test for update. not passing.
+
+[33mcommit 5642e9a314ee9b70ec39453be2aea1306ae33df4[m
+Author: Daniel Munger <mungerda@gmail.com>
+Date:   Fri Dec 16 09:22:49 2016 -0800
+
+    add passing method and test for find.
+
+[33mcommit c34c3ae4bffeaadf7a1a1cb12f7c83caad2a1f99[m
+Author: Daniel Munger <mungerda@gmail.com>
+Date:   Fri Dec 16 09:15:20 2016 -0800
+
+    add test for Find method. not passing.
+
+[33mcommit fab97e18a5ef2fe63f45c5b3452b3e3c6519b73d[m
+Author: Daniel Munger <mungerda@gmail.com>
+Date:   Fri Dec 16 09:09:43 2016 -0800
+
+    add passing method and test for venue save.
+
+[33mcommit 8fcb1da603d83db5b49aa6a783ecfd99aad45285[m
+Author: Daniel Munger <mungerda@gmail.com>
+Date:   Fri Dec 16 08:55:57 2016 -0800
+
+    add test for save method, not passing.
+
+[33mcommit 7b3376d466b437d36e5ba38cef6d48788d9f82da[m
+Author: Daniel Munger <mungerda@gmail.com>
+Date:   Fri Dec 16 08:52:15 2016 -0800
+
+    add passing method and test for empty database.
+
+[33mcommit c3e91af05186b1e87ca42bd773064c24c4a53205[m
+Author: Daniel Munger <mungerda@gmail.com>
+Date:   Fri Dec 16 08:41:33 2016 -0800
+
+    add test for empty database. not passing.
+
+[33mcommit 0c0e046e746dfaad814ccb4cfc04e6177bc0dad4[m
+Author: Daniel Munger <mungerda@gmail.com>
+Date:   Thu Dec 15 22:00:06 2016 -0800
+
+    add schema for database and test database.
+
+[33mcommit bf8f8aaa114319faba70eea8eabdc616a015a65d[m
+Author: Daniel Munger <mungerda@gmail.com>
+Date:   Thu Dec 15 21:45:54 2016 -0800
+
+    add template files.
+
+[33mcommit f62d15cf04427600d8b95415e1800b639b2b7c4c[m
+Author: Daniel Munger <mungerda@gmail.com>
+Date:   Thu Dec 15 21:40:13 2016 -0800
+
+    add specs for bandtracker program.
