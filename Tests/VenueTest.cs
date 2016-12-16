@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace  BandTracker.Tests
 {
-  public class VenueTest : IDisposable
+  public class VenueTest //: IDisposable
   {
     public VenueTest()
     {
@@ -21,21 +21,21 @@ namespace  BandTracker.Tests
 
       Assert.Equal(expected, result);
     }
-    [Fact]
-    public void Save_SavesVenueToDatabase_true()
-    {
-      //Arrange
-      Venue newVenue = new Venue("Belly Up", 455, "213 E. Durant");
-      newVenue.Save();
-      //Act
-      //Assert
-      Assert.Equal(true/false, TEMPLATE);
-    }
+    // [Fact]
+    // public void Save_SavesVenueToDatabase_true()
+    // {
+    //   //Arrange
+    //   Venue newVenue = new Venue("Belly Up", 455, "213 E. Durant");
+    //   newVenue.Save();
+    //   //Act
+    //   //Assert
+    //   Assert.Equal(true/false, TEMPLATE);
+    // }
 
-    public void Dispose()
-    {
-      TEMPLATE_OBJECT.DeleteAll(); //TEMPLATE_OBJECT references the object name
-    }
+    // public void Dispose()
+    // {
+    //   TEMPLATE_OBJECT.DeleteAll(); //TEMPLATE_OBJECT references the object name
+    // }
 
   }
 }
