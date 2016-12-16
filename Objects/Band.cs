@@ -115,67 +115,41 @@ namespace BandTracker.Objects
 
        return foundBand;
      }
-    // public void Edit(string description)
-    // {
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //   Console.WriteLine(this.TEMPLATEdescription);
-    //
-    //   SqlCommand cmd = new SqlCommand("UPDATE template SET TEMPLATEdescription = @TEMPLATEdescription WHERE id = @TEMPLATEId;", conn);
-    //
-    //   SqlParameter TEMPLATEParameter = new SqlParameter("@TEMPLATEId", this.Id);
-    //
-    //    SqlParameter TEMPLATEdescriptionParameter = new SqlParameter("TEMPLATEdescription", description);
-    //
-    //    cmd.Parameters.Add(TEMPLATEParameter);
-    //    cmd.Parameters.Add(TEMPLATEdescriptionParameter);
-    //
-    //    SqlDataReader rdr = cmd.ExecuteReader();
-    //
-    //    while(rdr.Read())
-    //    {
-    //      this.Id = rdr.GetInt32(0);
-    //      this.TEMPLATEdescription = rdr.GetString(1);
-    //    }
-    //    if (rdr != null)
-    //    {
-    //      rdr.Close();
-    //    }
-    //    if (conn != null)
-    //    {
-    //      conn.Close();
-    //    }
-    //  }
-    //
-    // public static List<TEMPLATE> Sort()
-    // {
-    //   List<Band> allTEMPLATE = new List<Band>{};
-    //
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //
-    //   SqlCommand cmd = new SqlCommand("SELECT * FROM template ORDER BY TEMPLATEdate;", conn);
-    //   SqlDataReader rdr = cmd.ExecuteReader();
-    //
-    //   while(rdr.Read())
-    //   {
-    //     int TEMPLATEId = rdr.GetInt32(0);
-    //     string TEMPLATEDescription = rdr.GetString(1);
-    //     TEMPLATE newTEMPLATE = new TEMPLATE(TEMPLATEDescription, TEMPLATEId);
-    //     allTEMPLATE.Add(newTEMPLATE);
-    //   }
-    //
-    //   if (rdr != null)
-    //   {
-    //     rdr.Close();
-    //   }
-    //   if (conn != null)
-    //   {
-    //     conn.Close();
-    //   }
-    //
-    //   return allTEMPLATE;
-    // }
+     public void AddVenue(Venue newVenue)
+     {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("INSERT INTO bands_venues (band_id, venue_id) VALUES (@BandId, @VenueId);", conn);
+      cmd.Parameters.AddWithValue("@BandId", this.GetId());
+      cmd.Parameters.AddWithValue("@VenueId", newVenue.GetId());
+      cmd.ExecuteNonQuery();
+
+      if(conn!=null) conn.Close();
+     }
+     public List<Venue> GetVenues()
+		{
+			SqlConnection conn = DB.Connection();
+			conn.Open();
+			SqlCommand cmd = new SqlCommand("SELECT venues.* FROM bands JOIN bands_venues ON (bands.id = bands_venues.band_id) JOIN venues ON (bands_venues.venue_id = venues.id) WHERE bands.id = @Id;", conn);
+			cmd.Parameters.AddWithValue("@Id", _id);
+			SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Venue> allVenues = new List<Venue>{};
+			while (rdr.Read())
+			{
+				int venueId = rdr.GetInt32(0);
+				string venueName = rdr.GetString(1);
+        int venueCapacity = rdr.GetInt32(2);
+        string venueLocation = rdr.GetString(3);
+				Venue foundVenue = new Venue(venueName, venueCapacity, venueLocation, venueId);
+				allVenues.Add(foundVenue);
+			}
+
+			if (rdr != null) rdr.Close();
+			if (conn != null) conn.Close();
+
+			return allVenues;
+		}
     // public void Delete()
     // {
     //   SqlConnection conn = DB.Connection();

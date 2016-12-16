@@ -43,10 +43,24 @@ namespace  BandTracker.Tests
 
       Assert.Equal(foundBand, newBand);
     }
+    [Fact]
+    public void GetVenues_ReturnsVenuesBandPlaysAt_True()
+    {
+      Band newBand = new Band("Kings of Leon", "Indie Rock");
+      newBand.Save();
+      Venue newVenue = new Venue("Belly Up", 1500, "1414 NE Snail ln");
+      newVenue.Save();
+
+      newBand.AddVenue(newVenue);
+      List<Venue> result = newBand.GetVenues();
+      List<Venue> expected = new List<Venue> {newVenue};
+      Assert.Equal(expected, result);
+    }
 
     public void Dispose()
     {
       Band.DeleteAll();
+      Venue.DeleteAll();
     }
 
   }
