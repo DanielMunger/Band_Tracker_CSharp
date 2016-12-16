@@ -127,29 +127,28 @@ namespace BandTracker.Objects
       if(conn!=null) conn.Close();
      }
      public List<Venue> GetVenues()
-		{
-			SqlConnection conn = DB.Connection();
-			conn.Open();
-			SqlCommand cmd = new SqlCommand("SELECT venues.* FROM bands JOIN bands_venues ON (bands.id = bands_venues.band_id) JOIN venues ON (bands_venues.venue_id = venues.id) WHERE bands.id = @Id;", conn);
-			cmd.Parameters.AddWithValue("@Id", _id);
-			SqlDataReader rdr = cmd.ExecuteReader();
+     {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("SELECT venues.* FROM bands JOIN bands_venues ON (bands.id = bands_venues.band_id) JOIN venues ON (bands_venues.venue_id = venues.id) WHERE bands.id = @BandId;", conn);
+      cmd.Parameters.AddWithValue("@BandId", this.GetId());
+      SqlDataReader rdr = cmd.ExecuteReader();
 
-      List<Venue> allVenues = new List<Venue>{};
-			while (rdr.Read())
-			{
-				int venueId = rdr.GetInt32(0);
-				string venueName = rdr.GetString(1);
+      List<Venue> bandsVenues = new List<Venue> {};
+      while(rdr.Read())
+      {
+        int venueId = rdr.GetInt32(0);
+        string venueName = rdr.GetString(1);
         int venueCapacity = rdr.GetInt32(2);
         string venueLocation = rdr.GetString(3);
-				Venue foundVenue = new Venue(venueName, venueCapacity, venueLocation, venueId);
-				allVenues.Add(foundVenue);
-			}
+        Venue newVenue = new Venue(venueName, venueCapacity, venueLocation, venueId);
+        bandsVenues.Add(newVenue);
+      }
+      if(rdr!=null) rdr.Close();
+      if(conn!=null) conn.Close();
+      return bandsVenues;
+     }
 
-			if (rdr != null) rdr.Close();
-			if (conn != null) conn.Close();
-
-			return allVenues;
-		}
     // public void Delete()
     // {
     //   SqlConnection conn = DB.Connection();
