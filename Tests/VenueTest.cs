@@ -38,7 +38,8 @@ namespace  BandTracker.Tests
     {
       Venue newVenue = new Venue("Belly Up", 455, "213 E. Durant");
       newVenue.Save();
-      Venue foundVenue = Venue.Find(newVenue.GetId());
+      int id = newVenue.GetId();
+      Venue foundVenue = Venue.Find(id);
 
       Assert.Equal(newVenue, foundVenue);
     }

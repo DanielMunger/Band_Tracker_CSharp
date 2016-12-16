@@ -18,19 +18,19 @@ namespace BandTracker.Objects
       _capacity = Capacity;
       _location = Location;
     }
-    private int GetId()
+    public int GetId()
     {
       return _id;
     }
-    private string GetName()
+    public string GetName()
     {
       return _name;
     }
-    private int GetCapacity()
+    public int GetCapacity()
     {
       return _capacity;
     }
-    private string GetLocation()
+    public string GetLocation()
     {
       return _location;
     }
@@ -96,36 +96,31 @@ namespace BandTracker.Objects
       return allVenues;
     }
 
-    // public static TEMPLATE Find(int id)
-    // {
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //
-    //   SqlCommand cmd = new SqlCommand("SELECT * FROM template WHERE id = @TEMPLATEId;", conn);
-    //   SqlParameter TEMPLATEIdParameter = new SqlParameter("@TEMPLATEId", id.ToString());
-    //   cmd.Parameters.Add(TEMPLATEIdParameter);
-    //   SqlDataReader rdr = cmd.ExecuteReader();
-    //
-    //   int foundTEMPLATEId = 0;
-    //   string foundTEMPLATEDescription = null;
-    //   while(rdr.Read())
-    //   {
-    //     foundTEMPLATEId = rdr.GetInt32(0);
-    //     foundTEMPLATEDescription = rdr.GetString(1);
-    //   }
-    //   TEMPLATE foundTEMPLATE = new TEMPLATE(foundTEMPLATEDescription, foundTEMPLATEId);
-    //
-    //   if (rdr != null)
-    //   {
-    //     rdr.Close();
-    //   }
-    //   if (conn != null)
-    //   {
-    //     conn.Close();
-    //   }
-    //
-    //   return foundTEMPLATE;
-    // }
+    public static Venue Find(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("SELECT * FROM venues WHERE id = @VenueId;", conn);
+      cmd.Parameters.AddWithValue("@VenueId", id);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int foundVenueId = 0;
+      string foundVenueName = null;
+      int foundVenueCapacity = 0;
+      string foundVenueLocation = null;
+      while(rdr.Read())
+      {
+        foundVenueId = rdr.GetInt32(0);
+        foundVenueName = rdr.GetString(1);
+        foundVenueCapacity = rdr.GetInt32(2);
+        foundVenueLocation = rdr.GetString(3);
+      }
+      Venue foundVenue = new Venue(foundVenueName, foundVenueCapacity, foundVenueLocation, foundVenueId);
+
+      if (rdr != null) rdr.Close();
+      if (conn != null) conn.Close();
+      return foundVenue;
+    }
     // public void Edit(string description)
     // {
     //   SqlConnection conn = DB.Connection();
@@ -209,6 +204,5 @@ namespace BandTracker.Objects
       cmd.ExecuteNonQuery();
       conn.Close();
     }
-
   }
 }
