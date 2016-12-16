@@ -149,7 +149,7 @@ namespace BandTracker.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("UPDATE venues SET name = @NewName, capacity=@NewCapacity, venue_location=@NewLocation WHERE id = @VenueId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE venues SET name = @NewName, capacity=@NewCapacity, venue_location=@NewLocation OUTPUT INSERTED.name, INSERTED.capacity, INSERTED.venue_location WHERE id = @VenueId;", conn);
 
       SqlParameter venueIdParameter = new SqlParameter("@VenueId", this.GetId());
       SqlParameter venueNameParameter = new SqlParameter("@NewName", newName);
@@ -164,10 +164,10 @@ namespace BandTracker.Objects
 
       while(rdr.Read())
       {
-        _id = rdr.GetInt32(0);
-        _name = rdr.GetString(1);
-        _capacity = rdr.GetInt32(2);
-        _location = rdr.GetString(3);
+
+        _name = rdr.GetString(0);
+        _capacity = rdr.GetInt32(1);
+        _location = rdr.GetString(2);
         Console.WriteLine("hello");
       }
       if (rdr != null)
