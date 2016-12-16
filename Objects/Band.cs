@@ -90,37 +90,31 @@ namespace BandTracker.Objects
       if (conn != null) conn.Close();
       return allBands;
     }
-    //
-    // public static TEMPLATE Find(int id)
-    // {
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //
-    //   SqlCommand cmd = new SqlCommand("SELECT * FROM template WHERE id = @TEMPLATEId;", conn);
-    //   SqlParameter TEMPLATEIdParameter = new SqlParameter("@TEMPLATEId", id.ToString());
-    //   cmd.Parameters.Add(TEMPLATEIdParameter);
-    //   SqlDataReader rdr = cmd.ExecuteReader();
-    //
-    //   int foundTEMPLATEId = 0;
-    //   string foundTEMPLATEDescription = null;
-    //   while(rdr.Read())
-    //   {
-    //     foundTEMPLATEId = rdr.GetInt32(0);
-    //     foundTEMPLATEDescription = rdr.GetString(1);
-    //   }
-    //   TEMPLATE foundTEMPLATE = new TEMPLATE(foundTEMPLATEDescription, foundTEMPLATEId);
-    //
-    //   if (rdr != null)
-    //   {
-    //     rdr.Close();
-    //   }
-    //   if (conn != null)
-    //   {
-    //     conn.Close();
-    //   }
-    //
-    //   return foundTEMPLATE;
-    // }
+
+    public static Band Find(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM bands WHERE id = @BandId;", conn);
+      cmd.Parameters.AddWithValue("BandId", id);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int foundBandId = 0;
+      string foundBandName = null;
+      string foundBandGenre = null;
+      while(rdr.Read())
+      {
+        foundBandId = rdr.GetInt32(0);
+        foundBandName = rdr.GetString(1);
+        foundBandGenre = rdr.GetString(2);
+      }
+      Band foundBand = new Band(foundBandName, foundBandGenre, foundBandId);
+      if (rdr != null) rdr.Close();
+      if (conn != null) conn.Close();
+
+       return foundBand;
+     }
     // public void Edit(string description)
     // {
     //   SqlConnection conn = DB.Connection();

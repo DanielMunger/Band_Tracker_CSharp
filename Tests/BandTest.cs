@@ -32,7 +32,16 @@ namespace  BandTracker.Tests
       List<Band> expected = new List<Band> {newBand};
 
       Assert.Equal(expected, result);
+    }
+    [Fact]
+    public void Find_FindsBandinDB_True()
+    {
+      Band newBand = new Band("Kings of Leon", "Indie Rock");
+      newBand.Save();
 
+      Band foundBand = Band.Find(newBand.GetId());
+
+      Assert.Equal(foundBand, newBand);
     }
 
     public void Dispose()
