@@ -33,6 +33,15 @@ namespace  BandTracker.Tests
       //Assert
       Assert.Equal(expected, result);
     }
+    [Fact]
+    public void Find_FindsVenueGivenID_True()
+    {
+      Venue newVenue = new Venue("Belly Up", 455, "213 E. Durant");
+      newVenue.Save();
+      Venue foundVenue = Venue.Find(newVenue.GetId());
+
+      Assert.Equal(newVenue, foundVenue);
+    }
 
     public void Dispose()
     {
