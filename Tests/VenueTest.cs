@@ -43,6 +43,21 @@ namespace  BandTracker.Tests
 
       Assert.Equal(newVenue, foundVenue);
     }
+    [Fact]
+    public void Update_UpdatesVenueInformationinDB_True()
+    {
+      Venue newVenue = new Venue("Belly Up", 455, "213 E. Durant");
+      newVenue.Save();
+      string newName = "Crystal Palace";
+      int newCapacity = 1200;
+      string newLocation = "517 NE 71st";
+
+      newVenue.Update(newName, newCapacity, newLocation);
+      string expected = newLocation;
+      string result = newVenue.GetLocation();
+
+      Assert.Equal(expected, result);
+    }
 
     public void Dispose()
     {
