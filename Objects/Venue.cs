@@ -181,37 +181,6 @@ namespace BandTracker.Objects
       if (conn != null) conn.Close();
       return venueBands;
     }
-    //
-
-    // public static List<TEMPLATE> Sort()
-    // {
-    //   List<Task> allTEMPLATE = new List<Task>{};
-    //
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //
-    //   SqlCommand cmd = new SqlCommand("SELECT * FROM template ORDER BY TEMPLATEdate;", conn);
-    //   SqlDataReader rdr = cmd.ExecuteReader();
-    //
-    //   while(rdr.Read())
-    //   {
-    //     int TEMPLATEId = rdr.GetInt32(0);
-    //     string TEMPLATEDescription = rdr.GetString(1);
-    //     TEMPLATE newTEMPLATE = new TEMPLATE(TEMPLATEDescription, TEMPLATEId);
-    //     allTEMPLATE.Add(newTEMPLATE);
-    //   }
-    //
-    //   if (rdr != null)
-    //   {
-    //     rdr.Close();
-    //   }
-    //   if (conn != null)
-    //   {
-    //     conn.Close();
-    //   }
-    //
-    //   return allTEMPLATE;
-    // }
     public void Delete()
     {
       SqlConnection conn = DB.Connection();

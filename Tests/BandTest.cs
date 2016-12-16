@@ -56,6 +56,18 @@ namespace  BandTracker.Tests
       List<Venue> expected = new List<Venue> {newVenue};
       Assert.Equal(expected, result);
     }
+    [Fact]
+    public void Delete_DeletesSingleInstance_True()
+    {
+      Band newBand = new Band("Kings of Leon", "Indie Rock");
+      newBand.Save();
+
+      newBand.Delete();
+      List<Band> result = Band.GetAll();
+      List<Band> expected = new List<Band>{};
+
+      Assert.Equal(expected, result);
+    }
 
     public void Dispose()
     {
