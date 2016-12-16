@@ -57,31 +57,23 @@ namespace BandTracker.Objects
       return this.GetLocation().GetHashCode();
     }
 
-    // public void Save()
-    // {
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //
-    //   SqlCommand cmd = new SqlCommand("INSERT INTO template (Venuedescription) OUTPUT INSERTED.id VALUES (@VenueDescription);", conn);
-    //
-    //   SqlParameter VenuedescriptionParameter = new SqlParameter("@VenueDescription", this.Venuedescription);
-    //   cmd.Parameters.Add(TEMPLATE_OBJECTdescriptionParameter);
-    //
-    //   SqlDataReader rdr = cmd.ExecuteReader();
-    //
-    //   while(rdr.Read())
-    //   {
-    //     this.Id = rdr.GetInt32(0);
-    //   }
-    //   if (rdr != null)
-    //   {
-    //     rdr.Close();
-    //   }
-    //   if (conn != null)
-    //   {
-    //     conn.Close();
-    //   }
-    // }
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("INSERT INTO venues (name, capacity, venue_location) OUTPUT INSERTED.id VALUES (@VenueName, @VenueCapcity, @VenueLocation);", conn);
+      cmd.Parameters.AddWithValue("@VenueName", this.GetName());
+      cmd.Parameters.AddWithValue("@VenueCapcity", this.GetCapacity());
+      cmd.Parameters.AddWithValue("@VenueLocation", this.GetLocation());
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+      if (rdr != null) rdr.Close();
+      if (conn != null) conn.Close();
+    }
 
     public static List<Venue> GetAll()
     {
@@ -209,14 +201,14 @@ namespace BandTracker.Objects
     //     conn.Close();
     //   }
     // }
-    // public static void DeleteAll()
-    // {
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //   SqlCommand cmd = new SqlCommand("DELETE FROM template;", conn);
-    //   cmd.ExecuteNonQuery();
-    //   conn.Close();
-    // }
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("DELETE FROM venues;", conn);
+      cmd.ExecuteNonQuery();
+      conn.Close();
+    }
 
   }
 }

@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace  BandTracker.Tests
 {
-  public class VenueTest //: IDisposable
+  public class VenueTest : IDisposable
   {
     public VenueTest()
     {
@@ -34,10 +34,10 @@ namespace  BandTracker.Tests
       Assert.Equal(expected, result);
     }
 
-    // public void Dispose()
-    // {
-    //   TEMPLATE_OBJECT.DeleteAll(); //TEMPLATE_OBJECT references the object name
-    // }
+    public void Dispose()
+    {
+      Venue.DeleteAll();
+    }
 
   }
 }
