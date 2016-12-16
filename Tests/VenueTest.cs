@@ -56,7 +56,7 @@ namespace  BandTracker.Tests
       string expected = newLocation;
       string result = newVenue.GetLocation();
 
-      Assert.Equal(expected, result);
+      Assert.Equal(expected , result);
     }
 
     public void Dispose()

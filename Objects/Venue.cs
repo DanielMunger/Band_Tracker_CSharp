@@ -121,38 +121,66 @@ namespace BandTracker.Objects
       if (conn != null) conn.Close();
       return foundVenue;
     }
-    // public void Edit(string description)
+    // public void Update(string newName, int newCapacity, string newLocation)
     // {
     //   SqlConnection conn = DB.Connection();
     //   conn.Open();
-    //   Console.WriteLine(this.TEMPLATEdescription);
+    //   SqlCommand cmd = new SqlCommand("UPDATE venues SET name=@NewName, capacity=@NewCapacity, venue_location=@NewLocation WHERE id = @VenueId;", conn);
+    //   cmd.Parameters.AddWithValue("@VenueId", this.GetId());
+    //   cmd.Parameters.AddWithValue("@NewName", newName);
+    //   cmd.Parameters.AddWithValue("@NewCapacity", newCapacity);
+    //   cmd.Parameters.AddWithValue("@NewLocation", newLocation);
     //
-    //   SqlCommand cmd = new SqlCommand("UPDATE template SET TEMPLATEdescription = @TEMPLATEdescription WHERE id = @TEMPLATEId;", conn);
+    //   SqlDataReader rdr = cmd.ExecuteReader();
+    //   while(rdr.Read())
+    //   {
+    //     // _id = rdr.GetInt32(0);
+    //     // _name = rdr.GetString(1);
+    //     // _capacity = rdr.GetInt32(2);
+    //     // _location = rdr.GetString(3);
+    //     Console.WriteLine("hello");
+    //   }
+    //   if (rdr != null) rdr.Close();
+    //   if (conn != null) conn.Close();
+    // }
     //
-    //   SqlParameter TEMPLATEParameter = new SqlParameter("@TEMPLATEId", this.Id);
+    public void Update(string newName, int newCapacity, string newLocation)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE venues SET name = @NewName, capacity=@NewCapacity, venue_location=@NewLocation WHERE id = @VenueId;", conn);
+
+      SqlParameter venueIdParameter = new SqlParameter("@VenueId", this.GetId());
+      SqlParameter venueNameParameter = new SqlParameter("@NewName", newName);
+      SqlParameter venueCapacityParameter = new SqlParameter("@NewCapacity", newCapacity);
+      SqlParameter venueLocationParameter = new SqlParameter("@NewLocation", newLocation);
+      cmd.Parameters.Add(venueIdParameter);
+      cmd.Parameters.Add(venueNameParameter);
+      cmd.Parameters.Add(venueCapacityParameter);
+      cmd.Parameters.Add(venueLocationParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        _id = rdr.GetInt32(0);
+        _name = rdr.GetString(1);
+        _capacity = rdr.GetInt32(2);
+        _location = rdr.GetString(3);
+        Console.WriteLine("hello");
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
     //
-    //    SqlParameter TEMPLATEdescriptionParameter = new SqlParameter("TEMPLATEdescription", description);
-    //
-    //    cmd.Parameters.Add(TEMPLATEParameter);
-    //    cmd.Parameters.Add(TEMPLATEdescriptionParameter);
-    //
-    //    SqlDataReader rdr = cmd.ExecuteReader();
-    //
-    //    while(rdr.Read())
-    //    {
-    //      this.Id = rdr.GetInt32(0);
-    //      this.TEMPLATEdescription = rdr.GetString(1);
-    //    }
-    //    if (rdr != null)
-    //    {
-    //      rdr.Close();
-    //    }
-    //    if (conn != null)
-    //    {
-    //      conn.Close();
-    //    }
-    //  }
-    //
+
     // public static List<TEMPLATE> Sort()
     // {
     //   List<Task> allTEMPLATE = new List<Task>{};
