@@ -18,6 +18,7 @@ _Longer Description_
 | The application can Delete a single Venue.                                                 | Delete: "Dirtbag Ernies"     | null                                                                           |
 | The application can Delete all Venues.                                                     | Delete: Venues               | null                                                                           |
 | The applicaiton is able to Create and Save a Band, and confirm the object was saved.       | "Kings of Leon"              | "Kings of Leon"                                                                |
+| The application is able to Find a Band.                                                    | "Kings of Leon"              | "Kings of Leon"                                                                |
 | The application allows a user to add a Band to a Venue.                                    | "Kings of Leon" + "Belly Up" | The Kings of Leon are playing at the Belly Up.                                 |
 | The application will list all the Bands that play at a given Venue.                        | "Belly Up"                   | "Kings of Leon", "Portugal, The Man", "Portland Elementary School Orchestra"   |
 | The application will list all the venues a Band plays at.                                  | "Kings of Leon"              | "Belly Up" , "Crystal Ballroom" , "Billy's Garage"                             |
