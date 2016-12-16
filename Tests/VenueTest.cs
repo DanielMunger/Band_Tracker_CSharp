@@ -70,10 +70,25 @@ namespace  BandTracker.Tests
 
       Assert.Equal(expected, result);
     }
+    [Fact]
+    public void AddBand_AddsBandToJoinTable_True()
+    {
+      Band newBand = new Band("Kings of Leon", "Indie Rock");
+      newBand.Save();
+      Venue newVenue = new Venue("Belly Up", 455, "213 E. Durant");
+      newVenue.Save();
+
+      newVenue.AddBand(newBand);
+      List<Band> result = newVenue.GetBands();
+      List<Band> expected = new List<Band>{newBand};
+
+      Assert.Equal(expected, result);
+    }
 
     public void Dispose()
     {
       Venue.DeleteAll();
+      Band.DeleteAll();
     }
 
   }
