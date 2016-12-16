@@ -58,6 +58,18 @@ namespace  BandTracker.Tests
 
       Assert.Equal(expected , result);
     }
+    [Fact]
+    public void Delete_DeletesSingleInstanceFromDB_True()
+    {
+      Venue newVenue = new Venue("Belly Up", 455, "213 E. Durant");
+      newVenue.Save();
+
+      newVenue.Delete();
+      List<Venue> expected = new List<Venue> {};
+      List<Venue> result = Venue.GetAll();
+
+      Assert.Equal(expected, result);
+    }
 
     public void Dispose()
     {
