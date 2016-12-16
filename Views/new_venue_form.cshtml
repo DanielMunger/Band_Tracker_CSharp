@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="/Content/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/Content/css/styles.css" rel="stylesheet" type="text/css">
+    <title>New Venue</title>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <h1>Add a New Venue</h1>
+    </div>
+    <div class="container">
+      <h2>Something</h2><br>
+        <form action="/venue/new" method="post">
+          <label for="venue-name">Venue Name:</label>
+          <input type="text" name="venue-name" id="venue-name"></br>
+          <label for="venue-capacity">Venue Capacity:</label>
+          <input type="text" name="venue-capacity" id="venue-capacity"></br>
+          <label for="venue-location">Venue Location:</label>
+          <input type="text" name="venue-location" id="venue-location"></br>
+          <button type="submit">Create Venue</button>
+        </form>
+      <h5><a href="/">HomePage</a></h5><br>
+    </div>
+  </body>
+</html>

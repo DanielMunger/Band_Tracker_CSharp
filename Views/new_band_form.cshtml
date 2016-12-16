@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="/Content/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/Content/css/styles.css" rel="stylesheet" type="text/css">
+    <title>New Band</title>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <h1>Add a New Band</h1>
+    </div>
+    <div class="container">
+      <h2>Something</h2><br>
+        <form action="/band/new" method="post">
+          <label for="band-name">Band Name:</label>
+          <input type="text" name="band-name" id="band-name"></br>
+          <label for="band-genre">Band Genre:</label>
+          <input type="text" name="band-genre" id="band-genre"></br>
+          <button type="submit">Create Band</button>
+        </form>
+      <h5><a href="/">HomePage</a></h5><br>
+    </div>
+  </body>
+</html>

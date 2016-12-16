@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="/Content/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/Content/css/styles.css" rel="stylesheet" type="text/css">
+    <title>Venues</title>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <h2>Venues in Portland</h2>
+    </div>
+    <div class="container">
+      <h2>Something</h2><br>
+      <ul>
+        @foreach(var venue in Model)
+        {
+          <li><a href="/venue/@venue.GetId()">@venue.GetName()</a></li>
+        }
+      </ul>
+      <h5><a href="/venue/new">Add a Venue</a></h5><br>
+    </div>
+  </body>
+</html>
