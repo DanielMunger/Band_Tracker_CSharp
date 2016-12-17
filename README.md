@@ -5,7 +5,7 @@
 #### By _**Daniel Munger**_
 
 ## Description
-_Longer Description_
+_This program uses a database to keep track of bands and the venues that are in a given area. The user is able to input a band or venue as well as add associations between the two. Such as adding a band to a venue that the band has played at and vice-versa._
 
 ## Specs
 | Behavior                                                                                   | Input                        | Output                                                                         |
@@ -28,6 +28,24 @@ _Longer Description_
 ## Setup/Installation Requirements
 
 * _Clone the repository (https://github.com/solgo/TEMPLATE.git)._
+* _Change the database location in "Data Source=DESKTOP-GC3DC7B\\SQLEXPRESS;Initial Catalog=band_tracker;Integrated Security=SSPI;" to your local database._
+* _Follow SQL instructions below to set up your tables._
+* _run 'dnu restore' in powershell to create a unique project.lock.json file._
+* _run 'dnx kestrel' to start your local server._
+* _open the webpage 'localhost:5004' to view the application._
+* _follow website instructions._
+* _enjoy!!_
+
+
+## SQL Server Setup Instructions
+
+* Open Microsoft SQL Server Manager.
+* Select File > Open > File and select "band_tracker_schema.sql"
+* Add the following lines to the top of the file:
+* CREATE DATABASE [band_tracker]
+* GO
+* Save the File and Click 'Execute'
+* Repeat Process for 'band_tracker_test'
 
 ## Known Bugs
 
@@ -39,7 +57,7 @@ _Please contact Daniel through GitHub "https://www.github.com/solgo"_
 
 ## Technologies Used
 
-_HTML, CSS, C#, Xunit,  Nancy, Razor, Git, GitHub_
+_HTML, CSS, C#, Nancy, Razor, Git, GitHub_
 
 ### License
 
