@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="/Content/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/Content/css/styles.css" rel="stylesheet" type="text/css">
+    <title>Venue</title>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <h1>@Model["SelectedVenue"].GetName()</h1>
+    </div>
+    <div class="container">
+      <h2>@Model["SelectedVenue"].GetName()</h2><br>
+      @if (@Model["SelectedBands"].Count != 0)
+      {
+        <h4>These Bands Play Here:</h4>
+        <ul>
+          @foreach (var band in @Model["SelectedBands"])
+          {
+            <li><a href="/band/@band.GetId()">@band.GetBandName()</a></li>
+          }
+        </ul>
+      }
+      <h4>Add a Band for this Venue:</h4>
+      <form action='/band/add_venue' method='post'>
+        <input id='venue-id' name='venue-id' type='hidden' value='@Model["SelectedVenue"].GetId()'>
+        <label for='band-id'>Select a Band</label>
+        <select id='band-id' name='band-id' type='text'>
+          @foreach (var band in @Model["AllBands"])
+          {
+            <option value='@band.GetId()'>@band.GetBandName()</option>
+          }
+        </select>
+        <button type='submit'>Add</button>
+      </form>
+      <h5><a href="/venue/delete/@Model["SelectedVenue"].GetId()">Delete This Venue</a></h5> 
+      <h5><a href="/">HomePage</a></h5><br>
+    </div>
+  </body>
+</html>

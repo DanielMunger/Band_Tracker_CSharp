@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="/Content/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/Content/css/styles.css" rel="stylesheet" type="text/css">
+    <title>Band</title>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <h1>@Model["SelectedBand"].GetBandName()</h1>
+    </div>
+    <div class="container">
+      <h2>@Model["SelectedBand"].GetBandName()</h2><br>
+      @if (@Model["SelectedVenues"].Count != 0)
+      {
+        <h4>This Band Plays at These Venues:</h4>
+        <ul>
+          @foreach (var venue in @Model["SelectedVenues"])
+          {
+            <li><a href="/venue/@venue.GetId()">@venue.GetName()</a></li>
+          }
+        </ul>
+      }
+      <h4>Add a Venue for this Band to Play at:</h4>
+      <form action='/venue/add_band' method='post'>
+        <input id='band-id' name='band-id' type='hidden' value='@Model["SelectedBand"].GetId()'>
+        <label for='venue-id'>Select a Venue</label>
+        <select id='venue-id' name='venue-id' type='text'>
+          @foreach (var venue in @Model["AllVenues"])
+          {
+            <option value='@venue.GetId()'>@venue.GetName()</option>
+          }
+        </select>
+        <button type='submit'>Add</button>
+      </form>
+
+      <h5><a href="/">HomePage</a></h5><br>
+    </div>
+  </body>
+</html>
