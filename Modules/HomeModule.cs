@@ -73,9 +73,30 @@ namespace BandTracker
         newBand.AddVenue(newVenue);
         return View["success.cshtml"];
       };
+      Get["/venue/update/{id}"] = parameters => {
+        Venue selectedVenue = Venue.Find(parameters.id);
+        return View["venue_update.cshtml", selectedVenue];
+      };
+      Patch["/venue/update/{id}"] = parameters => {
+        Venue selectedVenue = Venue.Find(parameters.id);
+        string updatedVenueName = Request.Form["venue-name"];
+        int updatedVenueCapacity = Request.Form["venue-capacity"];
+        string updatedVenueLocation = Request.Form["venue-location"];
+        selectedVenue.Update(updatedVenueName, updatedVenueCapacity, updatedVenueLocation);
+        return View["success.cshtml"];
+      };
+      //used a Get here because I am not creating a delete page.
       Get["/venue/delete/{id}"] = parameters => {
         Venue selectedVenue = Venue.Find(parameters.id);
         selectedVenue.Delete();
+        return View["success.cshtml"];
+      };
+      Get["/venues/deleteall"] = _ => {
+        Venue.DeleteAll();
+        return View["success.cshtml"];
+      };
+      Get["/bands/deleteall"] = _ => {
+        Band.DeleteAll();
         return View["success.cshtml"];
       };
     }
